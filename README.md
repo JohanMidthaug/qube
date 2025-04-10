@@ -1,5 +1,5 @@
 
-# Mini-project in AIS2105 Mechatronics & Automation.
+# Mini-project in AIS2105 Mechatronics & robotics.
 
 This repository is a complete ros2 project which does the following:
 
