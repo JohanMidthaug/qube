@@ -2,8 +2,22 @@
 # Mini-project in AIS2105 Mekatronikk & robotikk.
 
 - **qube_description**, which handles the geomertical description of the physical qube.
--  **qube_driver**, which contains the communication interface with the physical qube. This is gotten directly from https://github.com/adamleon/qube_driver/tree/main
+- **qube_driver**, which contains the communication interface with the physical qube. This is gotten directly from https://github.com/adamleon/qube_driver/tree/main
 - **qube_bringup**, which contains the launch, config and documentation files.
--  **qube_controller**, which includes a PID-controller to regulate the qube.
+- **qube_controller**, which includes a PID-controller to regulate the qube.
 
+# Documentation of project
 
+This project is split into clearly defined packages, each handling a specific part of the project.
+
+--**qube_descriptoin** 
+This package contains two URDF-files, called qube.macro.xacro, which contains a macro which describes the physical qube. The other URDF-file is qube.urdf.xacro, which contains a scene of the qube. The reason for splitting up into two URDF-files is reusability. This package also contains a launch file, called view_qube_launch.py.
+
+-**qube_driver**-
+The qube_driver package is documented here: https://github.com/adamleon/qube_driver/tree/main
+
+-**qube_bringup**
+This package includes launch and config files to bridge to whole project together. In this package, there is a new URDF-file, controlled_qube.urdf.xacro, which is the same as qube.urdf.xacro, but it also includes the qube_driver.ros2_control.xacro file. The controlled_qube.urdf.xacro makes it possible to define three macro arguments, baud_rate, device & simulation. There is also a launch file called bringup.launch.py, which starts up qube_driver.launch.py, rvizz and robot state controller.
+
+-**qube_controller**
+The qube_controller includes a node that subscribes to /joint_states, and gets position and velocity to the qube. Thereafter there is a PID controller that regulates and outputs a velocity signal. This velocity signal is a Float64MultiArray which gets sent to /velocity_controller/commands.
