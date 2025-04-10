@@ -1,6 +1,14 @@
 
 # Mini-project in AIS2105 Mekatronikk & robotikk.
 
+This repository is a complete ros2 project which does the following:
+
+- Control a Quanser Qube with ROS2
+- Has a working simulator
+- A Launch file to switch between the physical qube and the simulator
+- Visualization through Rviz
+- Control angle thorugh terminal and/or GUI
+
 - **qube_description**, which handles the geomertical description of the physical qube.
 - **qube_driver**, which contains the communication interface with the physical qube. This is gotten directly from https://github.com/adamleon/qube_driver/tree/main
 - **qube_bringup**, which contains the launch, config and documentation files.
