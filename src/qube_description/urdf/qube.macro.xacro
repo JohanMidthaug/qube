@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="qube_model" params="prefix">
+
+        <!-- Base link -->
+        <link name="${prefix}base_link">
+            <visual>
+                <geometry>
+                    <box size="0.1 0.1 0.01"/>
+                </geometry>
+                <material name="grey">
+                    <color rgba="0.5 0.5 0.5 1.0"/>
+                </material>
+            </visual>
+        </link>
+
+        <!-- Stator link -->
+        <link name="${prefix}stator_link">
+            <visual>
+                <geometry>
+                    <box size="${box_size} ${box_size} ${box_size}"/>
+                </geometry>
+                <material name="black">
+                    <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+            </visual>
+        </link>
+
+        <!-- Rotor link -->
+        <link name="${prefix}rotor_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${rotor_radius}" length="${rotor_length}"/>
+                </geometry>
+                <material name="red">
+                    <color rgba="1.0 0.0 0.0 1.0"/>
+                </material>
+            </visual>
+        </link>
+
+        <!-- Angle link -->
+        <link name="${prefix}angle_link">
+            <visual>
+                <geometry>
+                    <box size="${indicator_length} ${indicator_width} ${indicator_width}"/>
+                </geometry>
+                <material name="white">
+                    <color rgba="1.0 1.0 1.0 1.0"/>
+                </material>
+            </visual>
+        </link>
+
+        <!-- Stator joint -->
+        <joint name="${prefix}stator_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}stator_link"/>
+            <origin xyz="0 0 ${stator_height}" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Rotor joint (revolute) -->
+        <joint name="${prefix}motor_joint" type="revolute">
+            <parent link="${prefix}stator_link"/>
+            <child link="${prefix}rotor_link"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/> <!-- Ensure correct transform -->
+            <axis xyz="0 0 1"/>
+            <limit effort="10.0" velocity="1.0" lower="-3.14" upper="3.14"/>
+        </joint>
+
+        <!-- Indicator joint (fixed) -->
+        <joint name="${prefix}indicator" type="fixed">
+            <parent link="${prefix}rotor_link"/>
+            <child link="${prefix}angle_link"/>
+            <origin xyz="${indicator_offset} 0 ${indicator_height}" rpy="0 0 0"/>
+        </joint>
+
+    </xacro:macro>
+
+</robot>
+

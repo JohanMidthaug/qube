@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot name="qube" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<!-- Define properties -->
+    <xacro:property name="box_size" value="0.102"/>
+    <xacro:property name="stator_height" value="0.051"/>
+    <xacro:property name="rotor_radius" value="0.025"/>
+    <xacro:property name="rotor_length" value="0.110"/>
+    <xacro:property name="indicator_length" value="0.025"/>
+    <xacro:property name="indicator_width" value="0.002"/>
+    <xacro:property name="indicator_offset" value="0.012"/>
+    <xacro:property name="indicator_height" value="0.055"/>
+
+    <!-- Define world frame -->
+    <link name="world"/>
+
+    <!-- Include macro file -->
+    <xacro:include filename="$(find qube_description)/urdf/qube.macro.xacro"/>
+
+    <!-- Fixed base joint -->
+    <joint name="base_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Call the macro -->
+    <xacro:qube_model prefix=""/>
+
+</robot>

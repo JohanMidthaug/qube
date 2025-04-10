@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot name="qube" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Define properties for different aspects of the QUBE-->
+    <xacro:property name="box_size" value="0.102"/>
+    <xacro:property name="stator_height" value="0.051"/>
+    <xacro:property name="rotor_radius" value="0.025"/>
+    <xacro:property name="rotor_length" value="0.110"/>
+    <xacro:property name="indicator_length" value="0.025"/>
+    <xacro:property name="indicator_width" value="0.002"/>
+    <xacro:property name="indicator_offset" value="0.012"/>
+    <xacro:property name="indicator_height" value="0.055"/>
+
+    <!-- Define world frame -->
+    <link name="world"/>
+
+    <!-- Include macro and driver file -->
+    <xacro:include filename="$(find qube_description)/urdf/qube.macro.xacro"/>
+    <xacro:include filename="$(find qube_driver)/ros2_control/qube_driver.ros2_control.xacro"/>
+
+    <!-- Fixed base joint -->
+    <joint name="base_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Define arguments -->
+    <xacro:arg name="baud_rate" default="115200"/>
+    <xacro:arg name="device" default="/dev/ttyACM0"/>
+    <xacro:arg name="simulation" default="true"/>
+
+    <!-- Call the macro -->
+    <xacro:qube_model prefix=""/>
+
+    <!-- Call the control macro, so that we can pass the arguments to control -->
+    <xacro:qube_driver_ros2_control
+        name="qube_driver"
+        prefix=""
+        baud_rate="$(arg baud_rate)"
+        device="$(arg device)"
+        simulation="$(arg simulation)"/>
+</robot>
