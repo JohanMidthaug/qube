@@ -27,7 +27,7 @@ This package includes launch and config files to bridge to whole project togethe
 The qube_controller includes a node that subscribes to `/joint_states`, and gets position and velocity to the qube. Thereafter there is a PID controller that regulates and outputs a velocity signal. This velocity signal is a Float64MultiArray which gets sent to `/velocity_controller/commands`.
 
 # How to run
-To run this project, git pull or download the zipped version of the project. Then run `colcon build`, run `source install/setup.bash`, and run the command: `ros2 launch qube_bringup bringup.launch.py`. If you want to change the startup parameters, simualton, baud rate and device, instead run something like:  `ros2 launch qube_bringup bringup.launch.py simulation:="false" baud_rate:="9600" device:="/dev/ttyACM0"`
+To run this project, git pull or download the zipped version of the project. Then run `colcon build`, run `source install/setup.bash`, and run the command: `ros2 launch qube_bringup bringup.launch.py`. If you want to change the startup parameters, simulation, baud rate and device, instead run something like:  `ros2 launch qube_bringup bringup.launch.py simulation:="false" baud_rate:="9600" device:="/dev/ttyACM0"`
 
 # How to change paramaters
 If you want to change the PID parameters (kp, ki and kd) or the reference angle (reference), open a new terminal in the same workspace while the program is running, run `source install/setup.bash` and then run for example: `ros2 param set /qube_controller reference 1.5`
