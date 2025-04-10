@@ -10,10 +10,10 @@
 
 This project is split into clearly defined packages, each handling a specific part of the project.
 
---**qube_descriptoin** 
+- **qube_description** 
 This package contains two URDF-files, called qube.macro.xacro, which contains a macro which describes the physical qube. The other URDF-file is qube.urdf.xacro, which contains a scene of the qube. The reason for splitting up into two URDF-files is reusability. This package also contains a launch file, called view_qube_launch.py.
 
--**qube_driver**-
+-**qube_driver**
 The qube_driver package is documented here: https://github.com/adamleon/qube_driver/tree/main
 
 -**qube_bringup**
