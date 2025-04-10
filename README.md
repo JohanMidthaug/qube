@@ -9,19 +9,15 @@ This repository is a complete ros2 project which does the following:
 - Visualization through Rviz
 - Control angle thorugh terminal and/or GUI
 
-- **qube_description**, which handles the geomertical description of the physical qube.
-- **qube_driver**, which contains the communication interface with the physical qube. This is gotten directly from https://github.com/adamleon/qube_driver/tree/main
-- **qube_bringup**, which contains the launch, config and documentation files.
-- **qube_controller**, which includes a PID-controller to regulate the qube.
-
 # Documentation of project
 
 This project is split into clearly defined packages, each handling a specific part of the project.
 
-- **qube_description** 
-This package contains two URDF-files, called qube.macro.xacro, which contains a macro which describes the physical qube. The other URDF-file is qube.urdf.xacro, which contains a scene of the qube. The reason for splitting up into two URDF-files is reusability. This package also contains a launch file, called view_qube_launch.py.
+- **qube_description**
+qube_description handles the geomertical description of the physical qube.This package contains two URDF-files, called qube.macro.xacro, which contains a macro which describes the physical qube. The other URDF-file is qube.urdf.xacro, which contains a scene of the qube. The reason for splitting up into two URDF-files is reusability. This package also contains a launch file, called view_qube_launch.py.
 
 - **qube_driver**
+The qube_driver contains the communication interface with the physical qube.
 The qube_driver package is documented here: https://github.com/adamleon/qube_driver/tree/main
 
 - **qube_bringup**
